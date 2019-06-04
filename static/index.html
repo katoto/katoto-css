@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>常见样式记录</title>
+  <link rel="stylesheet" href="https://cvip.fui.fenqile.cn/res/css/common/vip_m.dc8f445.css">
+  <style>
+    section {
+      margin: 10px auto;
+      border: 1px solid black;
+      padding: 10px auto;
+    }
+
+    /* flag1 */
+    .tab1 {
+      height: 50px;
+      line-height: 50px;
+      display: flex;
+    }
+
+    .tab1 img {
+      display: inline-block;
+      margin: auto 10px;
+    }
+
+    .tab1 span {
+      font-size: 10px;
+    }
+
+    /* tab2  */
+    .tab2 {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .tab2 .box {
+      height: 100px;
+      width: 50px;
+      line-height: 100px;
+      text-align: center;
+      background-color: #f0f;
+    }
+
+    .tab2 .box2 {
+      height: 200px;
+      width: 50px;
+      text-align: center;
+      line-height: 200px;
+      background-color: #ff0;
+    }
+    /* tab3 */
+    .tab3{
+      width: 100%;
+      height: 80px;
+      display: flex;
+    }
+    .tab3 .sp1{
+      display: inline-block;
+      width: 50px;
+      height: 22px;
+      font-size: 13px;
+      align-items: center;
+      text-align: center;
+      line-height: 22px;
+      background-color: #f0f;
+      margin: auto 10px;
+      border-radius: 6px;
+      color: #fff;
+    }
+    .tab3 .sp2{
+      line-height: 80px;
+      font-size: 40px;
+      margin-left: 20px;
+    }
+    /* 角标 样式的实现 */
+    .content{
+      position: relative;
+      width: 80px;
+      height: 50px;
+      border: 1px solid royalblue;
+      margin: 10px;
+    }
+    .active::before{
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      border: 20px solid transparent;
+      border-top: 20px solid #407aff;
+      border-right: 20px solid #407aff;
+    }
+    .active2::after{
+      content: "";
+      position: absolute;
+      right: 3px;
+      top: 3px;
+      display: block;
+      width: 14px;
+      height: 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-left-color: #fff;
+      border-bottom-color: #fff;
+      transform: rotate(-45deg);
+    }
+
+    .tab4 .line1{
+      white-space:nowrap;
+      text-overflow:ellipsis;
+      overflow:hidden;
+    }
+    .tab4 .line2{
+      display: -webkit-box;
+      text-overflow:ellipsis;
+      overflow:hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    
+    .tab5{
+      height: 100px;
+    }
+    
+    .tab5 .vertical{
+      margin: 10px auto;
+      display: block;
+      width: 1px;
+      height: 40px;
+      -webkit-transform: scaleX(0.5);
+      transform: scaleX(0.5);
+      background-color: #00f;
+    }
+    
+    .tab5 .level{
+      margin: 10px auto;
+      display: block;
+      width: 90px;
+      height: 1px;
+      -webkit-transform: scaleY(0.5);
+      transform: scaleY(0.5);
+      background-color: #f0f;
+    }
+  </style>
+</head>
+
+<body>
+  <div> 上下居中 左边是img flex 形式 </div>
+  <section>
+    <div class="tab1">
+      <img src="./img/logo.jpg" width="30px" height="30px" alt="">
+      <span>各种文字</span>
+    </div>
+  </section>
+  <hr />
+  <div> 盒子上下居中 flex 形式 </div>
+  <section>
+    <div class="tab2">
+      <div class="box">1</div>
+      <div class="box2">2</div>
+      <div class="box">3</div>
+      <div class="box2">4</div>
+      <div class="box">5</div>
+      <div class="box2">6</div>
+    </div>
+  </section>
+  <hr />
+  <section>
+    <div class="tab3">
+      <span class="sp1">代金券</span>
+      <span class="sp2">文字描述</span>
+    </div>
+  </section>
+  <hr />
+  <div> 角标与三角钩伪类样式实现 </div>
+  <div style="overflow: hidden">
+    <section class="content fl">
+        <div class="boxbtn active">
+        </div>
+    </section>
+    <section class="content fl">
+        <div class="boxbtn active active2">
+        </div>
+    </section>
+  </div>
+  <div> 文本打点，单行与多行 </div>
+  <section class="tab4">
+    <p class="line1">强制文本单行显示并将溢出文本以省略号显示强制文本单行显示并将溢出文本以省略号显示强制文本单行</p>
+    <p class="line2">强制文本单行显示并将溢出文本以省略号显示强制文本单行显示并将溢出文本以省略文本单行显示并将溢出文本以省略文本单行显示并将溢出文本以省略号显示强制文本单行</p>
+  </section>
+  <div>0.5 像素的上下线</div>
+  <section class="tab5">
+    <!-- 垂直 -->
+    <i class="vertical"></i>
+    <!-- 水平 -->
+    <i class="level"></i>
+  </section>
+  
+</body>
+
+</html>
