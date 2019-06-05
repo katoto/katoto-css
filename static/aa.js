@@ -1,6 +1,13 @@
 const errorType = '3' // Webview
 const errorCode = '95010003' // Webview JS Exception
 const oriOnError = window.onerror
+
+window.addEventListener('error', ()=>{
+  // 资源404 
+  // native 方法还没有
+  
+}, true)
+
 window.onerror = function (msg, url, line) {
   var errorDesc = '错误信息：' + msg + '\nurl:' + url + '\n行数：' + line
   var jsonParams = JSON.stringify({error_type: errorType, error_code: errorCode, error_desc: errorDesc})
