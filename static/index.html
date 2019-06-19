@@ -149,17 +149,6 @@
       background-color: #f0f;
     }
   </style>
-  <script>
-    window.onerror = function (msg, url, line) {
-        var errorDesc = '错误信息：' + msg + '\nurl:' + url + '\n行数：' + line
-        var jsonParams = JSON.stringify({error_type: errorType, error_code: errorCode, error_desc: errorDesc})
-        // 调用错误上报
-        alert(errorDesc)
-        // callNative('errorReport', jsonParams)
-        console.log(errorDesc)
-    }
-  </script>
-  
 </head>
 
 <body>
@@ -214,7 +203,6 @@
     <i class="level"></i>
   </section>
   
-  <script src="http://www.katoto.cn/bb.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
