@@ -33,7 +33,7 @@
     /* tab2  */
     .tab2 {
       width: 100%;
-      height: 220px;
+      height: 120px;
       overflow: hidden;
       display: flex;
       justify-content: space-around;
@@ -41,18 +41,18 @@
     }
 
     .tab2 .box {
-      height: 100px;
-      width: 50px;
-      line-height: 100px;
+      height: 50px;
+      width: 40px;
+      line-height: 50px;
       text-align: center;
       background-color: #f0f;
     }
 
     .tab2 .box2 {
-      height: 200px;
-      width: 50px;
+      height: 100px;
+      width: 40px;
       text-align: center;
-      line-height: 200px;
+      line-height: 100px;
       background-color: #ff0;
     }
     /* tab3 */
@@ -126,7 +126,7 @@
     }
     
     .tab5{
-      height: 100px;
+      height: 80px;
     }
     
     .tab5 .vertical{
@@ -148,6 +148,49 @@
       transform: scaleY(0.5);
       background-color: #f0f;
     }
+    .tab6{
+      display: flex;
+    }
+    .tab6 .box-lf{
+      width: 110px;
+    }
+    .tab6 .box-lf img{
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+    .tab6 .box-rf{
+      flex: 1;
+      border: 1px solid rebeccapurple;
+      margin-left: 10px;
+      padding: 5px;
+      width: 100%;
+      overflow:hidden;
+    }
+    .tab6 .box-rf p{
+      white-space:nowrap; 
+      text-overflow:ellipsis;
+      overflow:hidden;
+    }
+    
+    .tab7{
+      display: flex;
+    }
+    .tab7 .box-lf, .tab7 .box-rf{
+      width: 110px;
+      overflow: hidden;
+    }
+    .tab7 .box-lf img{
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+    .tab7 .box-center{
+      flex: 1;
+    }
+    
   </style>
 </head>
 
@@ -201,6 +244,33 @@
     <i class="vertical"></i>
     <!-- 水平 -->
     <i class="level"></i>
+  </section>
+  <div>左边固定，右边自适应</div>
+  <section class="tab6">
+    <div class="box-lf">
+      <img src="//placemat.imgix.net/placeholder_images/images/000/000/065/original/d5e1ad1d?ixlib=rb-1.0.0&w=110&h=80&fm=auto&crop=faces%2Centropy&fit=crop&txt=110%C3%9780&txtclr=BFFF&txtalign=middle%2Ccenter&txtfit=max&txtsize=42&txtfont=Avenir+Next+Demi%2CBold&bm=multiply&blend=ACACAC&s=f3fef970b9eba3e85b3dc17834de37bf" alt="">
+    </div>
+    <div class="box-rf">
+      <p>各种文字啦啦啦靠捡各种文字啦啦啦靠捡垃圾法萨芬的各种文字啦啦啦靠捡垃圾法萨芬的各种文字啦啦啦靠捡垃圾法萨芬的垃圾法萨芬的</p>
+      <p>各种文字啦啦啦靠捡各种文字啦啦啦靠捡垃圾法萨芬的垃圾法萨芬的</p>
+      <p>各种文字啦啦啦靠捡垃圾法萨芬的</p>
+    </div>
+  </section>
+  
+  <div>左右固定，中间自适应</div>
+  <section class="tab7">
+    <div class="box-lf">
+      <img src="//placemat.imgix.net/placeholder_images/images/000/000/065/original/d5e1ad1d?ixlib=rb-1.0.0&w=110&h=80&fm=auto&crop=faces%2Centropy&fit=crop&txt=110%C3%9780&txtclr=BFFF&txtalign=middle%2Ccenter&txtfit=max&txtsize=42&txtfont=Avenir+Next+Demi%2CBold&bm=multiply&blend=ACACAC&s=f3fef970b9eba3e85b3dc17834de37bf" alt="">
+    </div>
+    <div class="box-center">
+      <p>各种文字啦啦啦靠捡各种文字啦啦啦靠捡垃圾法萨芬的各种文字啦啦啦靠捡垃圾法萨芬的各种文字啦啦啦靠捡垃圾法萨芬的垃圾法萨芬的</p>
+      <p>各种文字啦啦啦靠捡各种文字啦啦啦靠捡垃圾法萨芬的垃圾法萨芬的</p>
+      <p>各种文字啦啦啦靠捡垃圾法萨芬的</p>
+    </div>
+    <div class="box-rf">
+      <span>12331233451231233123345123345123345123545</span>
+      <p>12331233451231233123345123345123345123545</p>
+    </div>
   </section>
   
 </body>

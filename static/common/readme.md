@@ -92,3 +92,65 @@ testPromise.prototype.catch = function(reject){
   return this
 }
 ```
+**将promise的resolve和reject异步执行**
+如果executor 自执行函数中的resolve 函数立即触发时，发现Promise 失效。
+```
+const promise = new testPromise((resolve) => {
+    resolve(1);
+});
+promise.then((a) => alert(a));
+```
+解决办法： 将resolve ,reject 放入到setTimeout 里，即
+```
+function testPromise(executor){
+  var self = this;
+  self.status = 'pending'; // promise 当前的状态
+  self.data = undefined; // promise 的值
+  self.onResolvedCallback = []; //存多个then 的回调函数  1
+  self.onRejectedCallback = []; // 处理reject
+  function resolve(value){
+    setTimeout(function(){
+      if(self.status === 'pending'){
+        self.status = 'resolved'
+        self.data = value
+        for(var i=0 ;i< self.onResolvedCallback.length; i++ ){
+          self.onResolvedCallback[i](value)
+        }
+      }
+    })
+  }
+  function reject(reason){
+    setTimeout(function(){
+      if(self.status === 'pending'){
+        self.status = 'rejected';
+        self.data = reason
+        for(var i=0;i< self.onRejectedCallback.length;i++ ){
+          // 收集reject
+          self.onRejectedCallback[i] && self.onRejectedCallback[i](reason)
+        }
+      }
+    })
+  }
+  // executor(resolve) // 立即执行  1
+  try{
+    executor(resolve, reject)
+  }catch(e){
+    reject(e)
+  }
+}
+// then  第二个函数是 reject
+testPromise.prototype.then = function(resolve, reject){
+  // 收集回调函数
+  this.onResolvedCallback.push(resolve);
+  if(reject){
+    this.onRejectedCallback.push(reject)
+  }
+  return this
+}
+testPromise.prototype.catch = function(reject){
+  if(reject){
+    this.onRejectedCallback.push(reject)
+  }
+  return this
+}
+```
