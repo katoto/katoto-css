@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      内容区
+      <h3 id="txt"></h3>
+      <input type="text" id="input" />
+    </div>
+  </body>
+  <script>
+    /**
+     * const p = new Proxy(target, handler)
+     * target 可以是任何类型的对象，包括原生数组、函数、甚至另一个代理
+     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+     */
+    const txtDom = document.getElementById("txt");
+    const inpDom = document.getElementById("input");
+    const data = {
+      text: "hello",
+    };
+    const myText = new Proxy(data, {
+      set: function (target, prop, value) {
+        if (prop === "text") {
+          target[prop] = value;
+          txtDom.innerHTML = value;
+          inpDom.value = value;
+          console.log("-------", target, prop, value);
+          return true;
+        }
+        return false;
+      },
+    });
+    inpDom.addEventListener(
+      "input",
+      function (e) {
+        myText.text = e.target.value;
+      },
+      false
+    );
+    myText.text = data.text;
+  </script>
+</html>

@@ -1,7 +1,7 @@
 ## ps 破解
 url 参考：
 
-https://jingyan.baidu.com/article/60ccbcebb51e1164cab19716.html 
+https://jingyan.baidu.com/article/60ccbcebb51e1164cab19716.html
 
 备份的ps下载 常用工具库里
 1、断网 =》 试用版》 替换破解文件。

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>defineProperty</title>
+  </head>
+  <body>
+    <div id="app">
+      内容区
+      <h3 id="txt"></h3>
+      <p id="arrPush1">arr Push</p>
+      <p id="arrPush2">arr赋值</p>
+      <p id="arrPush3">对象赋值</p>
+      <p id="arrPush4">对象新增属性</p>
+      <p id="arrPush5">子对象属性</p>
+    </div>
+  </body>
+  <script>
+    /**
+     * Object.defineProperty(obj, prop, descriptor)
+     * 定义或修改的属性描述符
+     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+     */
+    function definePropertyFn(data, prop, value) {
+      Object.defineProperty(data, prop, {
+        enumerable: true,
+        configurable: true,
+        get: function () {
+          console.log(`get key--- ${prop} ---- value ${value}`);
+          return value;
+        },
+        set: function (newVal) {
+          console.log(`set key--- ${prop} ---- value ${newVal}`);
+          value = newVal;
+        },
+      });
+    }
+
+    function observe(data) {
+      // 由于 Object.defineProperty 只能对属性进行劫持，因此需要遍历对象的每个属性
+      if (!data || typeof data !== "object") {
+        return false;
+      }
+      Object.keys(data).forEach((key) => {
+        definePropertyFn(data, key, data[key]);
+      });
+    }
+
+    let arr = [1, 2, 3];
+    observe(arr);
+
+    document.getElementById("arrPush1").onclick = function () {
+      console.log("-------arrPush-----");
+      arr.push(4);
+    };
+    document.getElementById("arrPush2").onclick = function () {
+      console.log("------arr赋值-----");
+      arr[0] = new Date().getTime();
+    };
+    let data = {
+      test: 1,
+      aa: 2,
+      obj: {
+        a: 123,
+      },
+    };
+    observe(data);
+    document.getElementById("arrPush3").onclick = function () {
+      console.log("------对象赋值-----");
+      data.test = new Date().getTime();
+    };
+    document.getElementById("arrPush4").onclick = function () {
+      console.log("-------对象新增属性-----");
+      data.hahaha = new Date().getTime();
+      console.log(data);
+    };
+    document.getElementById("arrPush5").onclick = function () {
+      // 它会深度遍历绑定
+      console.log("-------子对象属性-----");
+      //   data.obj = new Date().getTime();
+      //   对于新增属性需要手动再次进行observe -- vue 就是对于的vm.$set
+      data.obj.objChild = new Date().getTime();
+    };
+    // （observe 对数组特殊处理了什么）
+    (function () {
+      const arrayProto = Array.prototype;
+      const arrayMethods = Object.create(arrayProto);
+      const methodsToPatch = [
+        "push",
+        "pop",
+        "shift",
+        "unshift",
+        "splice",
+        "sort",
+        "reverse",
+      ];
+      //   对特定的方法进行拦截，特殊通知
+      methodsToPatch.forEach((method) => {
+        const original = arrayProto[method];
+        Object.defineProperty(arrayMethods, method, {
+          enumerable: true,
+          writable: true,
+          configurable: true,
+          value: function (...args) {
+            // const result = original.apply(this, args);
+            const result = Reflect.apply(original, this, args);
+            switch (method) {
+              case "push":
+                console.log("拦截通知了push操作");
+                // emit & notify
+                break;
+              case "splice":
+              case "pop":
+                console.log("拦截通知了xxx操作");
+                // emit & notify
+                break;
+            }
+            return result;
+          },
+        });
+      });
+      //   看下是否通知
+      let testArr = new Array();
+      testArr.__proto__ = arrayMethods;
+      testArr.push("11111");
+      //   看下原型
+      //   console.log(testArr);
+    })();
+    // 看下源码
+    // core/observer/index.js
+  </script>
+</html>

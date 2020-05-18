@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  
-  
-
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1、构造函数  原型方法  静态方法
+      function testPromise(executor) {
+        var self = this;
+        self.status = "pending";
+        self.data = undefined;
+        self.onResolvedCallback = [];
+        self.onRejectedCallback = [];
+        function resolve(value) {
+          if (self.status === "pending") {
+            self.status = "resolved";
+            self.data = value;
+            for (var i = 0; i < self.onResolvedCallback.length; i++) {
+              self.onResolvedCallback[i](value);
+            }
+          }
+        }
+        function reject(reason) {
+          if (self.status === "pending") {
+            self.status = "rejected";
+            self.data = reason;
+            for (var i = 0; self.onRejectedCallback.length; i++) {
+              self.onRejectedCallback[i] & self.onRejectedCallback[i](reason);
+            }
+          }
+        }
+        try {
+          executor(resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
+      }
+      testPromise.prototype.then = function(resolve, reject) {
+        this.onResolvedCallback.push(resolve);
+        if (reject) {
+          this.onRejectedCallback.push(reject);
+        }
+        return this;
+      };
+      testPromise.prototype.catch = function(resolve, reject) {
+        if (reject) {
+          this.onRejectedCallback.push(reject);
+        }
+        return this;
+      };
+    </script>
+  </body>
 </html>

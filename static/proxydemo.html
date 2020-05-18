@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * const p = new Proxy(target, handler)
+     * target 可以是任何类型的对象，包括原生数组、函数、甚至另一个代理
+     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+     */
+    let obj = {
+      a: 1,
+      ddd: 2222,
+      name: "hhh",
+    };
+    let proxyObj = new Proxy(obj, {
+      get: function (target, prop) {
+        return target[prop] ? target[prop] : 0;
+      },
+      set: function (target, prop, value) {
+        //   可以做一些赋值校验
+        target[prop] = 8888;
+      },
+      getPrototypeOf: function (target) {
+        //   读取代理对象的原型时，会被调用
+        return Array.prototype;
+      },
+      deleteProperty: function (target, prop) {
+        //   删除属性
+        const WhiteArr = ["name", "phone"];
+        if (WhiteArr.indexOf(prop) > -1) {
+          console.error("不可以删除该属性");
+          return false;
+        }
+        delete target[prop];
+        return true;
+      },
+      has: function (target, prop) {
+        // 判断对象是否具有某个属性
+        const WhiteArr = ["money", "phone"];
+        if (WhiteArr.indexOf(prop) > -1) {
+          console.warn("这是私有属性");
+          return false;
+        }
+        return true;
+      },
+      apply: function () {
+        //   函数调用的拦截 （代理的是函数）
+      },
+      construct: function () {
+        //   new 操作的拦截
+      },
+      isExtensible: function () {
+        // 拦截 判断一个对象是否是可扩展
+      },
+    });
+    //cimg1.fenqile.com/ibanner2/M00/02/BC/kKgHAF6-Yc-AQhzxAACayo8XAV0965.png
+    //cimg1.fenqile.com/ibanner2/M00/02/65/j6gHAF6-YiOAOoQRAACpljVgQ-4559.png
+    // 利用它进行数据的二次处理、可以进行数据合法性的校验
+    // console.log(proxyObj.a);
+    // console.log(proxyObj.b);
+    // proxyObj.ccc = 666;
+    // var aaa_prototype = Object.getPrototypeOf(proxyObj);
+    // console.log(aaa_prototype === Array.prototype);
+    // delete proxyObj.name;
+    // console.log(obj);
+    // 用 has方法隐藏了属性 money
+    // console.log("money" in proxyObj);
+
+    let arr = [1, 2, 3];
+    let proxyArr = new Proxy(arr, {
+      get: function () {
+        console.log("------get le ----");
+      },
+      set: function () {
+        console.log("------set le------");
+      },
+    });
+    console.log(proxyArr);
+    console.log(proxyArr[0]);
+    // 查看案例
+    // https://segmentfault.com/a/1190000008303003?utm_source=tag-newest
+  </script>
+</html>

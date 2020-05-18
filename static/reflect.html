@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    /**
+     * Reflect的所有属性和方法都是静态的
+     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+     * 为什么要设计Reflect?
+     * 将Object对象的属于语言内部的方法放到Reflect对象上，1、更多的是函数的形式操作 2、原有报错或者中断的行为，在reflect这返回布尔值，确保原生行为能够正常进行
+     *
+     */
+    var testObj = {
+      a: 1,
+      b: 2,
+    };
+    Object.freeze(testObj);
+    testObj.c = 123; // 无反馈
+    Reflect.set(testObj, "c", "赋值操作123"); // false
+
+    Reflect.apply(f, obj, args); // 原 Function.prototype.apply.call(f, obj, args)
+    Reflect.get(obj, "name"); // a.name
+    Reflect.set(obj, "name", "value"); // a.name=123
+    Reflect.deleteProperty(); // delete a['name']
+    Reflect.has(); // 'name' in obj
+    Reflect.ownKeys(); // 返回一个由目标对象自身的属性键组成的数组。
+    Reflect.isExtensible(); // 对象是否可扩展
+  </script>
+</html>
