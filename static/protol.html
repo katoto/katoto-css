@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document 布局</title>
+  </head>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .head,
+    .food {
+      width: 100%;
+      height: 60px;
+      background-color: rosybrown;
+    }
+    .contain {
+      flex: 1;
+      width: 100%;
+      overflow: scroll;
+      display: grid;
+      grid-template: auto 1fr auto / auto 1fr auto;
+    }
+    .lf,
+    .rf {
+      width: 50px;
+      background-color: salmon;
+    }
+  </style>
+  <body>
+    <div class="head"></div>
+    <div class="contain">
+      <div class="lf"></div>
+      <div class="center">
+        <p>废弃物人</p>
+        <p>废弃物人</p>
+        <p>废弃物人</p>
+      </div>
+      <div class="rf"></div>
+    </div>
+    <div class="food"></div>
+  </body>
+</html>

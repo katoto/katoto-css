@@ -12,6 +12,7 @@
      * const p = new Proxy(target, handler)
      * target 可以是任何类型的对象，包括原生数组、函数、甚至另一个代理
      * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
      */
     let obj = {
       a: 1,
@@ -20,13 +21,16 @@
     };
     let proxyObj = new Proxy(obj, {
       get: function (target, prop) {
+        console.log(`-------get-${prop}----`);
         return target[prop] ? target[prop] : 0;
       },
       set: function (target, prop, value) {
         //   可以做一些赋值校验
+        console.log(`-------set-${prop}-----`);
         target[prop] = 8888;
       },
       getPrototypeOf: function (target) {
+        console.log(`-------getPrototypeOf------`);
         //   读取代理对象的原型时，会被调用
         return Array.prototype;
       },
@@ -59,31 +63,36 @@
         // 拦截 判断一个对象是否是可扩展
       },
     });
-    //cimg1.fenqile.com/ibanner2/M00/02/BC/kKgHAF6-Yc-AQhzxAACayo8XAV0965.png
-    //cimg1.fenqile.com/ibanner2/M00/02/65/j6gHAF6-YiOAOoQRAACpljVgQ-4559.png
     // 利用它进行数据的二次处理、可以进行数据合法性的校验
-    // console.log(proxyObj.a);
-    // console.log(proxyObj.b);
+    // proxyObj.a;
+    // proxyObj.b;
     // proxyObj.ccc = 666;
     // var aaa_prototype = Object.getPrototypeOf(proxyObj);
+    // console.log(aaa_prototype === Object.prototype);
     // console.log(aaa_prototype === Array.prototype);
+
+    // // 拦截delete  操作
     // delete proxyObj.name;
     // console.log(obj);
-    // 用 has方法隐藏了属性 money
-    // console.log("money" in proxyObj);
+    // // 用 has方法隐藏了属性 money
+    console.log("money" in proxyObj);
 
-    let arr = [1, 2, 3];
-    let proxyArr = new Proxy(arr, {
-      get: function () {
-        console.log("------get le ----");
-      },
-      set: function () {
-        console.log("------set le------");
-      },
-    });
-    console.log(proxyArr);
-    console.log(proxyArr[0]);
-    // 查看案例
-    // https://segmentfault.com/a/1190000008303003?utm_source=tag-newest
+    // function sum(a, b) {
+    //   return a + b;
+    // }
+    // const proxySum = new Proxy(sum, {
+    //   // thisArg 调用的上下文
+    //   apply: function (target, thisArg, argumentsList) {
+    //     console.log(`=---apply-${target}-${thisArg}-${argumentsList}----`);
+    //     return target(argumentsList[0], argumentsList[1]) * 10;
+    //   },
+    //   construct: function (target, args) {
+    //     console.log("-----construct--------");
+    //     return new target(...args);
+    //   },
+    // });
+    // console.log(proxySum(1, 2));
+    // new proxySum();
+    // 完整的handler 看mdn
   </script>
 </html>

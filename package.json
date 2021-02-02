@@ -10,12 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.0.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0"
   },
   "devDependencies": {
-    "vue": "^2.6.11"
+    "typescript": "^3.9.3",
+    "vue": "^2.6.11",
+    "vue-cli-plugin-vue-next": "~0.1.2"
   }
 }

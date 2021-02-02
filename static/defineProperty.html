@@ -37,7 +37,6 @@
         },
       });
     }
-
     function observe(data) {
       // 由于 Object.defineProperty 只能对属性进行劫持，因此需要遍历对象的每个属性
       if (!data || typeof data !== "object") {
@@ -50,7 +49,6 @@
 
     let arr = [1, 2, 3];
     observe(arr);
-
     document.getElementById("arrPush1").onclick = function () {
       console.log("-------arrPush-----");
       arr.push(4);
@@ -84,6 +82,7 @@
       data.obj.objChild = new Date().getTime();
     };
     // （observe 对数组特殊处理了什么）
+    // 仿例
     (function () {
       const arrayProto = Array.prototype;
       const arrayMethods = Object.create(arrayProto);
@@ -109,12 +108,11 @@
             switch (method) {
               case "push":
                 console.log("拦截通知了push操作");
-                // emit & notify
+                // emit & notify update
                 break;
               case "splice":
               case "pop":
                 console.log("拦截通知了xxx操作");
-                // emit & notify
                 break;
             }
             return result;
@@ -125,10 +123,10 @@
       let testArr = new Array();
       testArr.__proto__ = arrayMethods;
       testArr.push("11111");
-      //   看下原型
-      //   console.log(testArr);
+      //   打开tool看下原型
+      console.log(testArr);
     })();
-    // 看下源码
+    // 看下node_modules 源码
     // core/observer/index.js
   </script>
 </html>

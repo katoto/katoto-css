@@ -1,0 +1,276 @@
+<!-- saved from url=(0105)https://ggfw.gdhrss.gov.cn/zjjyh/pages/jx/DWCertificateViewCommon.jsp?id=984311C5C8920032E053BFC8800AA6C5 -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script
+      src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"
+      type="text/javascript"
+    ></script>
+
+    <style>
+      /*证书查看按钮样式*/
+      .btn {
+        margin-top: 5px;
+        margin-left: 2px;
+        font-family: "微软雅黑";
+        /* background:url(img/按钮.png)  ;   */
+        border: 0px;
+        border-radius: 12px;
+        width: 135px;
+        height: 49px;
+        cursor: pointer;
+        font-size: 25px;
+        color: #477172;
+        background: #79d4c870;
+        font-weight: 550;
+        -webkit-font-smoothing: antialiased;
+      }
+      /*证书查看按钮样式*/
+      .table {
+        font-size: 25px;
+        color: #696262;
+        font-weight: 650;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .table1 {
+        font-size: 28px;
+        color: #696262;
+        font-weight: 650;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .a {
+        font-size: 30px;
+        color: #696262;
+        font-weight: 550;
+        -webkit-font-smoothing: antialiased;
+      }
+      #target {
+        width: 97%;
+      }
+    </style>
+    <script type="text/javascript">
+      window.onload = function () {
+        // var ids = document.getElementById("id").value;
+        // var id = "query" + "," + ids;
+        // $.ajax({
+        //   type: "post",
+        //   url: "/zjjyh/ShowImgServlet",
+        //   dataType: "json",
+        //   sync: false,
+        //   data: { id: id },
+        //   success: function (data) {
+        //     document.getElementById("aac003").innerHTML = data.aac003;
+        //     document.getElementById("bgej47").innerHTML = data.bgej47;
+        //     document.getElementById("bgej31").innerHTML = data.bgej31;
+        //     document.getElementById("bgej33").innerHTML = data.bgej33;
+        //     document.getElementById("bgej55").innerHTML = data.bgej55;
+        //     document.getElementById("bgej45").innerHTML = data.bgej45;
+        //     document.getElementById("bgej46").innerHTML = data.bgej46;
+        //     document.getElementById("bgej47").innerHTML = data.bgej47;
+        //     document.getElementById("jieguo").innerHTML =
+        //       "已完成该年度继续教育任务";
+        //   },
+        //   error: function (xhr, status, errMsg) {
+        //     document.getElementById("aac003").innerHTML = "";
+        //     document.getElementById("bgej47").innerHTML = "";
+        //     document.getElementById("bgej31").innerHTML = "";
+        //     document.getElementById("bgej33").innerHTML = "";
+        //     document.getElementById("bgej55").innerHTML = "";
+        //     alert("数据有误，请重新刷新");
+        //   },
+        // });
+      };
+
+      /*点击查询按钮触发的事件*/
+      function check() {
+        var id = document.getElementById("id").value;
+        var g_contextpath = "/zjjyh/ShowImgServlet?id=";
+        //window.location=g_contextpath+"print"+","+id;
+        var target = (document.getElementById("target").src =
+          "https://cimg1.fenqile.com/ibanner2/M00/04/2F/kagHAF-zjPOAJ3fGAAN0XTIjV7M033.jpg");
+        xuanzhun();
+      }
+
+      //如果图片不存在测返回文字
+      function nofind() {
+        document.getElementById("phonetext").innerHTML =
+          "数据不存在，请登录到系统，重新生成证书并打印";
+        document.getElementById("target").style.display = "none";
+      }
+      function preview(path) {
+        alert(path);
+        document.getElementById("target").src = path;
+      }
+      function trim(str) {
+        //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+      }
+
+      /*图片样式*/
+      function xuanzhun() {
+        var current = 360 % 360;
+        document.getElementById("phonetext").style.display = "";
+        document.getElementById("target").style.display = "";
+        var imgdiv = document.getElementById("imgdiv");
+        imgdiv.style.transform = "rotate(" + current + "deg)";
+      }
+    </script>
+    <style type="text/css">
+      @media print {
+        img {
+          height: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <center>
+        <input id="id" hidden="true" value="984311C5C8920032E053BFC8800AA6C5" />
+        <table
+          style="
+            width: 100%;
+            font-size: 25px;
+            color: #696262;
+            font-weight: 650;
+            -webkit-font-smoothing: antialiased;
+          "
+          border="0"
+        >
+          <!--    <col width="1%">
+                   <col width="6%">
+                   <col width="9%">
+                   <col width="10%">
+                   <col width="2%">
+                   <col width="5%">
+                   <col width="5%">  -->
+          <colgroup>
+            <col width="13%" />
+          </colgroup>
+          <tbody>
+            <tr>
+              <td align="right">
+                姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:
+              </td>
+              <td id="aac003">孔文元</td>
+            </tr>
+            <tr>
+              <td align="right">
+                年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度:
+              </td>
+              <td id="bgej31">2019</td>
+            </tr>
+            <tr>
+              <td align="right">证书编号:</td>
+              <td id="bgej33">GD522419002409</td>
+            </tr>
+            <tr>
+              <td align="right">专业系列:</td>
+              <td id="bgej55">中小学教师</td>
+            </tr>
+          </tbody>
+        </table>
+        <table
+          style="
+            width: 100%;
+            font-size: 25px;
+            color: #696262;
+            font-weight: 650;
+            -webkit-font-smoothing: antialiased;
+          "
+          border="0"
+        >
+          <colgroup>
+            <col width="13%" />
+          </colgroup>
+          <tbody>
+            <tr>
+              <td align="right">学习情况:</td>
+              <td>已完成公需课<font color="red" id="bgej45">18</font>学时、</td>
+              <td>已完成专业课<font color="red" id="bgej46">42</font>学时、</td>
+              <td>已完成选修课<font color="red" id="bgej47">12</font>学时、</td>
+            </tr>
+          </tbody>
+        </table>
+        <table
+          style="
+            width: 100%;
+            font-size: 25px;
+            color: #696262;
+            font-weight: 650;
+            -webkit-font-smoothing: antialiased;
+          "
+          border="0"
+        >
+          <colgroup>
+            <col width="13%" />
+          </colgroup>
+          <tbody>
+            <tr>
+              <td align="right">验证结果:</td>
+              <td id="jieguo">已完成该年度继续教育任务</td>
+              <td id="id"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table style="width: 100%" border="0">
+          <tbody>
+            <tr>
+              <td align="left">
+                <input
+                  class="btn"
+                  type="submit"
+                  value="证书查看"
+                  onclick="check();"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </center>
+    </div>
+    <div id="imgdiv" style="margin-top: 10px">
+      <!-- <center><img alt='证书' id="target" style="display: none;" onerror="this.src='../../home_page/print.jpg'"/></center> -->
+      <center>
+        <img alt="证书" id="target" style="display: none" onerror="nofind();" />
+      </center>
+      <center>
+        <a class="a" id="phonetext" style="display: none"
+          >您所查询的证书在广东省专业技术人员继续教育管理系统为真实有效。</a
+        >
+      </center>
+    </div>
+
+    <div>
+      <div
+        style="
+          display: none;
+          position: fixed;
+          top: 30px;
+          width: auto;
+          max-width: 100%;
+          text-align: center;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 99999999;
+        "
+      >
+        <div
+          style="
+            display: inline-block;
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px solid rgb(240, 195, 109);
+            background-color: rgb(249, 237, 190);
+            padding: 0px 10px;
+            border-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+          "
+        ></div>
+      </div>
+    </div>
+  </body>
+</html>

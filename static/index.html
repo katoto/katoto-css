@@ -193,6 +193,31 @@
       .tab7 .box-center {
         flex: 1;
       }
+      .global-header-bottom-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1wx;
+        width: 750;
+        transform: scaleY(0.5);
+        transform-origin: center bottom;
+        background-color: #e7e7e8;
+      }
+      a {
+        color: black;
+        font-weight: 500;
+        background: linear-gradient(
+          90deg,
+          red,
+          orange,
+          yellow,
+          green,
+          blue,
+          purple
+        );
+        background-clip: text;
+      }
     </style>
   </head>
 
@@ -249,6 +274,9 @@
       <!-- 水平 -->
       <i class="level"></i>
     </section>
+
+    <div class="global-header-bottom-line"></div>
+
     <div>左边固定，右边自适应</div>
     <section class="tab6">
       <div class="box-lf">
@@ -266,7 +294,7 @@
       </div>
     </section>
 
-    <div>左右固定，中间自适应</div>
+    <div><a>左右固定，中间自适应</a></div>
     <section class="tab7">
       <div class="box-lf">
         <img
@@ -286,13 +314,13 @@
         <p>12331233451231233123345123345123345123545</p>
       </div>
     </section>
-    <div style="margin-bottom: 100px;font-size: 12px;">
-      <h1 style="font-size: 12px;">
+    <div style="margin-bottom: 100px; font-size: 12px">
+      <h1 style="font-size: 12px">
         利用vertical-align: middle实现居中(得是行内块元素)
       </h1>
       <a href="">qqqqqq</a>
       <img
-        style="width: 100px;vertical-align: middle;"
+        style="width: 100px; vertical-align: middle"
         src="//cimg1.fenqile.com/ibanner2/M00/00/BF/j6gHAF23wROAMvMNAAPqZ5lyZQE639.jpg"
         alt=""
       />
@@ -300,7 +328,7 @@
   </body>
 </html>
 <script>
-  var MyModule = (function() {
+  var MyModule = (function () {
     var modules = {};
     function define(name, deps, impl) {
       for (var i = 0; i < deps.length; i++) {
@@ -313,7 +341,7 @@
     }
     return {
       get,
-      define
+      define,
     };
   })();
 </script>

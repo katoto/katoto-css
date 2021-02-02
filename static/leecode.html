@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>leecode test</title>
+  </head>
+  <body>
+    <button id="btn">点击跳转</button>
+  </body>
+  <script>
+    /**
+     * js 大数相加 (js使用双精度格式，也就是64位二进制)
+     * 将两个数字前面补0至相同的长度，然后从低位到高位进行相加， 同时用一个变量记录进位的信息
+     * */
+    function bigNum(a, b) {
+      a = a.toString();
+      b = b.toString();
+      //   补'0'操作
+      let cur = 0;
+      while (cur < a.length || cur < b.length) {
+        if (!a[cur]) {
+          a = "0" + a;
+        } else if (!b[cur]) {
+          b = "0" + b;
+        }
+        cur++;
+      }
+      let result = "";
+      let flag = 0;
+      for (let i = a.length - 1; i >= 0; i--) {
+        const _currSum = Number(a[i]) + Number(b[i]) + Number(flag);
+        flag = _currSum >= 10 ? 1 : 0;
+        result = (_currSum % 10) + result;
+      }
+      if (flag === 1) {
+        result = "1" + result;
+      }
+      console.log(result);
+    }
+    bigNum("92222222229999999999999", "12123336789"); // 92222222230012123336788;
+
+    /**
+     * 深拷贝函数
+     * 最简易利用 JSON.parse(JSON.stringify(object)) 来解决
+     * */
+    function deepClone(obj) {
+      function isObject(o) {
+        return (typeof o === "object" || typeof o === "function") && o !== null;
+      }
+      if (!isObject(obj)) {
+        throw new Error("not object");
+      }
+      let isArray = Array.isArray(obj);
+      let newObj = isArray ? [...obj] : { ...obj };
+      Reflect.ownKeys(newObj).forEach((key) => {
+        newObj[key] = isObject(obj[key]) ? deepClone(obj[key]) : obj[key];
+      });
+      return newObj;
+    }
+    /**
+     * extend 继承实现 A 继承B 的原型
+     * */
+    function extend(A, B) {
+      function f() {}
+      f.prototype = B.prototype;
+      A.prototype = new f();
+      A.prototype.constructor = A;
+    }
+    // es6 继承
+    class Parent {
+      constructor(value) {
+        this.val = value;
+      }
+      getValue() {
+        console.log(this.val);
+      }
+    }
+    class Child extends Parent {
+      constructor(value) {
+        super(value);
+        this.val = value;
+      }
+    }
+    let child = new Child(1);
+    child.getValue(); // 1
+    child instanceof Parent; //true
+
+    /**
+     *
+     * 拍平数组
+     * [1,2,[3,4]]  // [1,2,3,4]
+     * */
+    function flatten(list) {
+      if (list.length === 0) return list;
+      const firstEle = list[0];
+      let _eleArr = null;
+      if (Array.isArray(firstEle)) {
+        _eleArr = flatten(firstEle);
+      } else {
+        _eleArr = [firstEle];
+      }
+      return _eleArr.concat(flatten(list.slice(1)));
+    }
+    /**
+     *
+     * 拍平指定深度数组
+     * [1,2,[3,4]]  // [1,2,3,4]
+     * */
+    function flattenDepth(list, n) {
+      if (list.length === 0) return list;
+      if (n === 0) return list;
+      const firstEle = list[0];
+      let _eleArr = null;
+      if (Array.isArray(firstEle)) {
+        _eleArr = flatten(firstEle, n - 1);
+      } else {
+        _eleArr = [firstEle];
+      }
+      return _eleArr.concat(flatten(list.slice(1), n));
+    }
+  </script>
+</html>
